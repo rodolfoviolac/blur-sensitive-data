@@ -23,8 +23,6 @@ const obf = new Obfuscator({
 const clearDataObject = obf.blur(dirtyObjectData);
 const clearDataString = obf.blur(dirtyStringData);
 
-// console.log(clearDataObject);
+console.log(clearDataObject);
 console.log(clearDataString);
-
-console.log(obf.blur("Credit Card Number 4024-0071-4571-8614"))
 

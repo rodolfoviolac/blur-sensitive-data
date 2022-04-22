@@ -1,11 +1,11 @@
 <div style="text-align:center">
 <a href=""><img src="https://i.imgur.com/6hcZWUS.png" style="display:block; margin:auto; width:100%; max-width:100%" alt="Blur sensitive data logo"/></a>
-<h1>obfuscate what metters</h1>
-<strong>remove any sensitive information instantly from your data</strong>
+<h1>Obfuscate what metters</h1>
+<strong>Remove any sensitive information instantly from your data</strong>
 
 </div>
 
-A simple tool to remove all sensitive data from structures, so they can be used safely. Go from `my credit card number is 4024-0071-4571-8614` to `my credit card number is NOT_VISIBLE` and mutch more!
+A simple tool to remove all sensitive data from structures, so they can be used safely. Go from `my credit card number is 4024-0071-4571-8614` to `my credit card number is NOT_VISIBLE` and much more!
 
 ## Installing
 
