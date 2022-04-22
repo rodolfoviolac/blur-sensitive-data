@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Library to blur sensitive data.",
   "author": "Rodolfo Viola Carvalho",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -19,6 +19,10 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config test/e2e/jest-e2e.json",
     "commit": "cz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rodolfoviolac/blur-sentitive-data.git"
   },
   "dependencies": {
   },
