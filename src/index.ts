@@ -6,7 +6,7 @@ import {stringPatterns} from "./utils/stringsPatterns";
 import {EStringPatterns} from "./typings/enums";
 const sensitiveFields = require('sensitive-fields');
 
-export default class Obfuscator {
+export class Obfuscator {
     static readonly EStringLookUpFields = EStringPatterns;
     readonly EStringLookUpFields = Obfuscator.EStringLookUpFields;
 
@@ -50,4 +50,8 @@ export default class Obfuscator {
         }
         return lookUpFields;
     }
+}
+
+module.exports = {
+    Obfuscator
 }

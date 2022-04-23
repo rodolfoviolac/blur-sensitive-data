@@ -1,4 +1,4 @@
-import Obfuscator from "../dist/cjs";
+import {Obfuscator} from "../dist/cjs";
 
 const replacerText = `NOT_VISIBLE`
 

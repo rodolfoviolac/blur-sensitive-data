@@ -22,10 +22,9 @@ $ yarn add blur-sensitive-data
 ## How to use
 
 ```typescript
-import Obfuscator from 'blur-sensitive-data';
+const ob = require('blur-sensitive-data');
 
-const obf = new Obfuscator();
-obf.blur("Credit Card Number 4024-0071-4571-8614");
+const obf = new ob.Obfuscator().blur("Credit Card Number 4024-0071-4571-8614");
 
 //output: Credit Card Number NOT_VISIBLE_SECURITY_REASON
 ```

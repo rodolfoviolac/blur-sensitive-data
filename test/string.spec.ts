@@ -1,4 +1,4 @@
-import Obfuscator from "../dist/cjs/index";
+import {Obfuscator} from "../dist/cjs/index";
 import {EStringPatterns} from "../src/typings/enums";
 
 
