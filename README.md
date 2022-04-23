@@ -22,7 +22,7 @@ $ yarn add blur-sensitive-data
 ## How to use
 
 ```typescript
-import Obfuscator from 'blur-sentitive-data';
+import Obfuscator from 'blur-sensitive-data';
 
 const obf = new Obfuscator();
 obf.blur("Credit Card Number 4024-0071-4571-8614");
@@ -40,7 +40,7 @@ obf.blur("Credit Card Number 4024-0071-4571-8614");
 The library supports objects whether they are simple or deep, keyword scanning is done on the entire object, there is also a layer to remove circular dependency if it is present.
 
 ```typescript
-import Obfuscator from 'blur-sentitive-data';
+import Obfuscator from 'blur-sensitive-data';
 
 const dirtyObjectData = {
     Api_key: 'test string api_key',
@@ -89,7 +89,7 @@ const clearData = obf.blur(dirtyObjectData);
 The library supports type string, in this case the obfuscation is done by matching the searched pattern, whether it is presented only in the sentence or multiple times, and can be in several differents formats and/or intertwined with other texts.
 
 ```typescript
-import Obfuscator from 'blur-sentitive-data';
+import Obfuscator from 'blur-sensitive-data';
 
 const dirtyStringData = 'this is a string with Credit Card Number 4024-0071-4571-8614, CPF 222.222.222-22 with obfuscator';
 const configObject = {
