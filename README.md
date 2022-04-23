@@ -7,6 +7,11 @@
 
 A simple tool to remove all sensitive data from structures, so they can be used safely. Go from `my credit card number is 4024-0071-4571-8614` to `my credit card number is NOT_VISIBLE` and much more!
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/02470fd9db37baa27160/maintainability)](https://codeclimate.com/github/rodolfoviolac/blur-sensitive-data/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/02470fd9db37baa27160/test_coverage)](https://codeclimate.com/github/rodolfoviolac/blur-sensitive-data/test_coverage)
+<a href="https://twitter.com/acdlite/status/974390255393505280">
+<img alt="Blazing Fast" src="https://img.shields.io/badge/speed-blazing%20%F0%9F%94%A5-brightgreen.svg?style=flat-square"></a>
+
 ## Installing
 
 Using npm:
