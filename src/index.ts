@@ -1,10 +1,10 @@
 import {IBlurSettings, TTargetFieldType} from './typings/interfaces';
 import {securityObjectFieldCleaner} from "./utils/objectHandler";
-import {sensitiveFields} from "./utils/sensitiveFields";
-import * as defaultFields from './utils/defaultFields.json';
+import {customSensitiveFields} from "./utils/sensitiveFields";
 import {securityStringFieldCleaner} from "./utils/stringHandler";
 import {stringPatterns} from "./utils/stringsPatterns";
 import {EStringPatterns} from "./typings/enums";
+const sensitiveFields = require('sensitive-fields');
 
 export default class Obfuscator {
     static readonly EStringLookUpFields = EStringPatterns;
@@ -33,7 +33,7 @@ export default class Obfuscator {
     }
 
     private handleObjectData(rawData: object): object{
-        const lookUpFields = [...sensitiveFields, ...defaultFields, ...this.blurSettings?.additionalObjectKeys || []]
+        const lookUpFields = [...customSensitiveFields, ...sensitiveFields, ...this.blurSettings?.additionalObjectKeys || []]
         return securityObjectFieldCleaner(rawData, lookUpFields, this.blurSettings.replacerText)
     }
 
@@ -45,7 +45,7 @@ export default class Obfuscator {
 
     private handleStringPatterns(): RegExp[] {
         let lookUpFields = [...this.blurSettings.additionalStringPatterns || []];
-        for(const pattern of this.blurSettings.stringPatterns){
+        for(const pattern of this.blurSettings.stringPatterns || []){
             lookUpFields.push(stringPatterns[pattern])
         }
         return lookUpFields;

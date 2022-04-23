@@ -1,6 +1,6 @@
 function removeCircularDependency() {
     const seen = new WeakSet();
-    return (key, value) => {
+    return (key: any, value: any) => {
         const valueNotSeen = !seen.has(value);
         if (typeof value === 'object' && value !== null && valueNotSeen) {
             seen.add(value);
@@ -9,7 +9,7 @@ function removeCircularDependency() {
     };
 }
 
-function objectReplacer(objectToReplace: object, lookFor: string[], stringReplacer: string): object {
+function objectReplacer(objectToReplace: any, lookFor: string[], stringReplacer: string): object {
     for (const [key] of Object.entries(objectToReplace)) {
         if(lookFor.includes(key)){
             objectToReplace[key] = stringReplacer;
@@ -22,7 +22,7 @@ function objectReplacer(objectToReplace: object, lookFor: string[], stringReplac
 }
 
 
-export function securityObjectFieldCleaner(objectTarget: any, fieldsToLookFor: string[], stringReplacer: string): object {
+export function securityObjectFieldCleaner(objectTarget: any, fieldsToLookFor: string[], stringReplacer: string = ''): object {
     const cleanObject = JSON.parse(JSON.stringify(objectTarget, removeCircularDependency()));
     return objectReplacer(cleanObject, fieldsToLookFor, stringReplacer);
 }

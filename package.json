@@ -1,13 +1,15 @@
 {
   "name": "blur-sensitive-data",
-  "version": "1.0.0",
-  "description": "Library to blur sensitive data.",
+  "version": "1.1.0",
+  "description": "Remove any sensitive information instantly from your data",
   "author": "Rodolfo Viola Carvalho",
   "license": "MIT",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "module": "./dist/esm/index.js",
   "scripts": {
-    "build": "tsc -p .",
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
+    "prepublish": "npm run build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "ts-node dist/index.js",
     "start:dev": "ts-node src/index.ts",
@@ -20,11 +22,15 @@
     "test:e2e": "jest --config test/e2e/jest-e2e.json",
     "commit": "cz"
   },
+  "files": [
+    "dist/"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/rodolfoviolac/blur-sensitive-data.git"
   },
   "dependencies": {
+    "sensitive-fields": "^0.0.9"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",

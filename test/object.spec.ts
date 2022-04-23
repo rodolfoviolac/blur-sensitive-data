@@ -1,8 +1,8 @@
-import Obfuscator from "../dist";
+import Obfuscator from "../dist/cjs";
 
 const replacerText = `NOT_VISIBLE`
 
-function generateText(defaultDirtyStringData){
+function generateText(defaultDirtyStringData: string | object){
     const obf = new Obfuscator({
         replacerText: replacerText,
     });

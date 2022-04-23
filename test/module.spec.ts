@@ -1,4 +1,4 @@
-import Obfuscator from "../dist";
+import Obfuscator from "../dist/cjs";
 import {TTargetFieldType} from "../src/typings/interfaces";
 
 describe('Testing Obfuscator module and structures', () => {

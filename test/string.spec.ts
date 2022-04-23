@@ -1,8 +1,9 @@
-import Obfuscator from "../dist/index";
-import {EStringPatterns} from "../dist/typings/enums";
+import Obfuscator from "../dist/cjs/index";
+import {EStringPatterns} from "../src/typings/enums";
+
 
 const replacerText = `NOT_VISIBLE`
-function generateText(defaultDirtyStringData, pattern){
+function generateText(defaultDirtyStringData: string, pattern: EStringPatterns){
     const obf = new Obfuscator({
         replacerText: replacerText,
         stringPatterns: [pattern]

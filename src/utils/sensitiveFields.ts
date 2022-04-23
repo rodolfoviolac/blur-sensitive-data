@@ -1,4 +1,4 @@
-export const sensitiveFields = [
+export const customSensitiveFields = [
     'token',
     'authorization',
     'cpf',
