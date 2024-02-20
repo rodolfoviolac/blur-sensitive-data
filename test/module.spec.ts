@@ -53,9 +53,15 @@ describe('Testing Obfuscator module and structures', () => {
 		expect(obf.blur('222.222.222-54')).not.toEqual('222.222.222-54');
 	});
 
+	it('Obfuscator null should throw error', () => {
+		const obf = new Obfuscator();
+		expect(obf.blur);
+		expect(obf.blur.bind((null as unknown) as TTargetFieldType)).toThrow(/Blur data type null or undefined is not supported/);
+	});
+
 	it('Obfuscator with different type of input', () => {
 		const obf = new Obfuscator();
 		expect(obf.blur);
-		expect(obf.blur.bind((true as unknown) as TTargetFieldType)).toThrow(/Data type not supported/);
+		expect(obf.blur.bind((true as unknown) as TTargetFieldType)).toThrow(/Blur data type null or undefined is not supported/);
 	});
 });

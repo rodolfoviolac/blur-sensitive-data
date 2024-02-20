@@ -2,7 +2,7 @@ import { Obfuscator } from '../dist/cjs';
 
 const replacerText = `NOT_VISIBLE`;
 
-function generateText(defaultDirtyStringData: string | object) {
+function generateText(defaultDirtyStringData: any) {
 	const obf = new Obfuscator({
 		replacerText: replacerText,
 	});
@@ -44,5 +44,13 @@ describe('Blur Value successfully from object', () => {
 			additionalObjectKeys: ['obfuscator'],
 		});
 		expect(obf.blur({ obfuscator: 'teste' })).toEqual({ obfuscator: replacerText });
+	});
+
+	it('Validate null and undefined object value', () => {
+		const obf = new Obfuscator({
+			replacerText: replacerText,
+			additionalObjectKeys: ['obfuscator'],
+		});
+		expect(obf.blur({ obfuscator: 'teste', add: null, test: undefined })).toEqual({ obfuscator: replacerText, add: null, test: null });
 	});
 });

@@ -32,7 +32,8 @@ export class Obfuscator {
 	public blur(rawData: TTargetFieldType) {
 		const rawDataType = typeof rawData;
 
-		if (!rawData) throw new Error('Blur data type null or undefined is not supported');
+		if (rawData === null || rawData === undefined)
+			throw new Error('Blur data type null or undefined is not supported');
 
 		switch (rawDataType) {
 			case 'object':
