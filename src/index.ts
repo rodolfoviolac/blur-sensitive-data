@@ -1,57 +1,76 @@
-import {IBlurSettings, TTargetFieldType} from './typings/interfaces';
-import {securityObjectFieldCleaner} from "./utils/objectHandler";
-import {customSensitiveFields} from "./utils/sensitiveFields";
-import {securityStringFieldCleaner} from "./utils/stringHandler";
-import {stringPatterns} from "./utils/stringsPatterns";
-import {EStringPatterns} from "./typings/enums";
+import { IBlurSettings, TTargetFieldType } from './typings/interfaces';
+import securityObjectFieldCleaner from './utils/objectHandler';
+import { customSensitiveFields } from './utils/sensitiveFields';
+import { securityStringFieldCleaner } from './utils/stringHandler';
+import { stringPatterns } from './utils/stringsPatterns';
+import { EStringPatterns } from './typings/enums';
+
 const sensitiveFields = require('sensitive-fields');
 
 export class Obfuscator {
-    static readonly EStringLookUpFields = EStringPatterns;
-    readonly EStringLookUpFields = Obfuscator.EStringLookUpFields;
+	static readonly EStringLookUpFields = EStringPatterns;
 
-    blurSettings: IBlurSettings = {
-        replacerText: "NOT_VISIBLE_SECURITY_REASON",
-        stringPatterns: [EStringPatterns.CPF, EStringPatterns.CNPJ, EStringPatterns.RG, EStringPatterns.PHONE, EStringPatterns.CREDIT_CARD]
-    }
+	readonly EStringLookUpFields = Obfuscator.EStringLookUpFields;
 
-    constructor(blurSettings?: IBlurSettings) {
-        Object.assign(this.blurSettings, blurSettings);
-    }
+	blurSettings: IBlurSettings = {
+		replacerText: 'NOT_VISIBLE_SECURITY_REASON',
+		stringPatterns: [
+			EStringPatterns.CPF,
+			EStringPatterns.CNPJ,
+			EStringPatterns.RG,
+			EStringPatterns.PHONE,
+			EStringPatterns.CREDIT_CARD,
+			EStringPatterns.UUID,
+			EStringPatterns.OBJECT_ID,
+		],
+	};
 
-    public blur(rawData: TTargetFieldType){
-        const rawDataType = typeof rawData
+	constructor(blurSettings?: IBlurSettings) {
+		Object.assign(this.blurSettings, blurSettings);
+	}
 
-        switch (rawDataType) {
-            case 'object':
-                return this.handleObjectData(rawData as object);
-            case 'string':
-                return this.handleStringData(rawData as string);
-            default:
-                throw new Error('Data type not supported')
-        }
-    }
+	public blur(rawData: TTargetFieldType) {
+		const rawDataType = typeof rawData;
 
-    private handleObjectData(rawData: object): object{
-        const lookUpFields = [...customSensitiveFields, ...sensitiveFields, ...this.blurSettings?.additionalObjectKeys || []]
-        return securityObjectFieldCleaner(rawData, lookUpFields, this.blurSettings.replacerText)
-    }
+		if (!rawData) throw new Error('Blur data type null or undefined is not supported');
 
-    private handleStringData(rawData: string): string{
-        const lookUpFieldsPatterns = this.handleStringPatterns();
-        return securityStringFieldCleaner(rawData, lookUpFieldsPatterns, this.blurSettings.replacerText);
-    }
+		switch (rawDataType) {
+			case 'object':
+				return this.handleObjectData(rawData as Record<string, unknown>);
+			case 'string':
+				return this.handleStringData(rawData as string);
+			default:
+				throw new Error(`Blur data type ${rawDataType} not supported`);
+		}
+	}
 
+	private handleObjectData(rawData: Record<string, unknown>): Record<string, unknown> {
+		const lookUpFields = [
+			...customSensitiveFields,
+			...sensitiveFields,
+			...(this.blurSettings?.additionalObjectKeys || []),
+		];
+		return securityObjectFieldCleaner(rawData, lookUpFields, this.blurSettings.replacerText);
+	}
 
-    private handleStringPatterns(): RegExp[] {
-        let lookUpFields = [...this.blurSettings.additionalStringPatterns || []];
-        for(const pattern of this.blurSettings.stringPatterns || []){
-            lookUpFields.push(stringPatterns[pattern])
-        }
-        return lookUpFields;
-    }
+	private handleStringData(rawData: string): string {
+		const lookUpFieldsPatterns = this.handleStringPatterns();
+		return securityStringFieldCleaner(
+			rawData,
+			lookUpFieldsPatterns,
+			this.blurSettings.replacerText,
+		);
+	}
+
+	private handleStringPatterns(): RegExp[] {
+		const lookUpFields = [...(this.blurSettings.additionalStringPatterns || [])];
+		for (const pattern of this.blurSettings.stringPatterns || []) {
+			lookUpFields.push(stringPatterns[pattern]);
+		}
+		return lookUpFields;
+	}
 }
 
 module.exports = {
-    Obfuscator
-}
+	Obfuscator,
+};

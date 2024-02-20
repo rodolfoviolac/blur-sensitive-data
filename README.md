@@ -34,10 +34,10 @@ const obf = new ob.Obfuscator().blur("Credit Card Number 4024-0071-4571-8614");
 //output: Credit Card Number NOT_VISIBLE_SECURITY_REASON
 ```
 
-| STRUCTURES | DESCRIPTION                                                                                                                                                                                                                                                                                                                    |
-|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `object`   | Obfuscation happens on any value at which the key is considered sensitive. +2k keys are parsed by default and you can add more values to obfuscate, the default fields are based on [cabinjs sensitive list](https://github.com/cabinjs/sensitive-fields).                                                                     | 
-| `string`   | The obfuscation happens in the patterns that are considered sensitive, the match is done by regex. By default we offer some patterns to obfuscate whether the sentence is formatted or not: `Brazilian CPF`, `Brazilian CNPJ`, `Brazilian RG`, `Phone Number` and `Credit Card Number`, other values can be added. |
+| STRUCTURES | DESCRIPTION                                                                                                                                                                                                                                                                                                                             |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `object`   | Obfuscation happens on any value at which the key is considered sensitive. +2k keys are parsed by default and you can add more values to obfuscate, the default fields are based on [cabinjs sensitive list](https://github.com/cabinjs/sensitive-fields).                                                                              | 
+| `string`   | The obfuscation happens in the patterns that are considered sensitive, the match is done by regex. By default we offer some patterns to obfuscate whether the sentence is formatted or not: `Brazilian CPF`, `Brazilian CNPJ`, `Brazilian RG`, `Phone Number`, `Object Id`, `UUID` and `Credit Card Number`, other values can be added. |
 
 ### Objects
 
