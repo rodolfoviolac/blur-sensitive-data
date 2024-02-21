@@ -1,6 +1,6 @@
 <div style="text-align:center">
 <a href=""><img src="https://i.imgur.com/6hcZWUS.png" style="display:block; margin:auto; width:100%; max-width:100%" alt="Blur sensitive data logo"/></a>
-<h1>Obfuscate what metters</h1>
+<h1>Obfuscate what matters</h1>
 <strong>Remove any sensitive information instantly from your data</strong>
 
 </div>
